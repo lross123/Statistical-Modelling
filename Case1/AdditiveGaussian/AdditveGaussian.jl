@@ -7,7 +7,7 @@ using Distributions
 using Measures
 using NLopt
 using FilePathsBase
-# In this script, we generate the result for additive Gaussian measurement error model for Case 1
+# In this script, we generate the result for additive Gaussian measurement error model when there is only one subpopulation involved.
 
 # Get the path of the current script.
 path = dirname(@__FILE__)
@@ -20,10 +20,10 @@ data1 = data.a
 # Fixed parameters
 # Data is collected at time t = t1.
 t1 = 300
-# The PDE in Equation (5) is solved on 0<=x<=L with grid spacing δ.
+# The PDE is solved on 0<=x<=L with grid spacing δ.
 δ=0.5; L=199; J=20
 
-# diff!(): Discretized PDE in Equation (5).
+# diff!(): Is the discretized PDE allowing the equation to be solved via numerical methods.
 function diff!(d_u, u, p, t)
     # ------------------------------------------------------------------------------------------------------------------
     # Input:
@@ -37,15 +37,15 @@ function diff!(d_u, u, p, t)
     (D1,v1,δ) = p   
     N = length(u)
 
-    # Boundary at x = 0, associated with Equation (21).
+    # The equation for the boundary at x = 0.
     d_u[1] = (D1/(δ^2))*(u[2]-u[1]) -  (v1/δ)*(u[2]*(1-u[2]))
 
-    # Associated with Equation (22).
+    # The equations for between x=0 and x=L.
     for n in 2:N-1
         d_u[n] = (D1/(δ^2))*(u[n+1]-2*u[n]+u[n-1]) - (v1/(2*δ))*(u[n+1]*(1-u[n+1]) - u[n-1]*(1-u[n-1]))
     end 
 
-    # Boundary at x = 199, associated with Equation (23).
+    # The equation for the boundary at x = 199.
     d_u[N] = (-D1/(δ^2))*(u[N] - u[N-1]) + (v1/δ)*(u[N-1]*(1-u[N-1]))
 
     return d_u
@@ -461,6 +461,7 @@ for i = 1:1:200
 end
 out_rate = (o)/200* 100
 println("The number of data outside interval for subpopulation 1: ",o)
+
 
 
 println("The percentage of data outside interval: $out_rate %")
