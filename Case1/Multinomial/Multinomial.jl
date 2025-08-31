@@ -42,7 +42,7 @@ function diff!(d_u, u, p, t)
     # The equation for the boundary at x = 0.
     d_u[1] = (D1/(δ^2))*(u[2]-u[1]) -  (v1/δ)*(u[2]*(1-u[2]))
 
-    # The equations for the boundary at x = 0 and x=199.
+    # The equations for between x=0 and x=199.
     for n in 2:N-1
         d_u[n] = (D1/(δ^2))*(u[n+1]-2*u[n]+u[n-1]) - (v1/(2*δ))*(u[n+1]*(1-u[n+1]) - u[n-1]*(1-u[n-1]))
     end 
@@ -422,4 +422,5 @@ println("The number of data outside interval for subpopulation 1: ",o)
 
 
 println("The percentage of data outside interval: $out_rate %")
+
 
