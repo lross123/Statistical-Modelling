@@ -25,7 +25,7 @@ t1 = 300
 δ=0.5; L=199; J=20
 
 
-# diff!(): Discretized PDE in Equation (5).
+# diff!(): Is the discretized PDE allowing the equation to be solved via numerical methods.
 function diff!(d_u, u, p, t)
     # ------------------------------------------------------------------------------------------------------------------
     # Input:
@@ -418,6 +418,7 @@ for i = 1:1:200
 end
 out_rate = (o)/200* 100
 println("The number of data outside interval for subpopulation 1: ",o)
+
 
 
 println("The percentage of data outside interval: $out_rate %")
