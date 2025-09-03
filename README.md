@@ -18,7 +18,7 @@ simulation outputs to experimental-style data across multiple scenarios.
   - Identifiability analysis via likelihood-based approaches.  
 
 - **Data**  
-  - Synthetic and experimental-style data provided (`data.csv`, `experimental_data.csv`).  
+  - Synthetic data provided (`data.csv`).  
   - Scripts for parameter estimation, identifiability analysis, and prediction intervals.
 
 ## Tech Stack
